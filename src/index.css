@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-serif: "Crimson Pro", "Georgia", serif;
+  
+  --color-gold-accent: #C5A059;
+  --color-dark-bg: #0A0A0A;
+  --color-dark-card: #141414;
+  --color-dark-border: #252525;
+  --color-text-bright: #E5E5E5;
+  --color-text-dim: #888888;
+}
+
+@layer base {
+  body {
+    @apply bg-dark-bg text-text-bright antialiased overflow-hidden;
+  }
+}
+
+@layer utilities {
+  .elegant-card {
+    @apply bg-dark-card border border-dark-border shadow-2xl;
+  }
+  
+  .atmosphere {
+    background: 
+      radial-gradient(circle at 50% -20%, #2a2010 0%, transparent 60%),
+      radial-gradient(circle at 10% 80%, #1a1a1a 0%, transparent 50%),
+      radial-gradient(circle at 90% 70%, #050505 0%, transparent 50%);
+    @apply fixed inset-0 pointer-events-none opacity-50 blur-[120px] -z-10;
+  }
+
+  .text-glow {
+    text-shadow: 0 0 15px rgba(197, 160, 89, 0.2);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 3px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-gold-accent/20 rounded-full;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-gold-accent/40;
+  }
+}
+

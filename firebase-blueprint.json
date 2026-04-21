@@ -1,0 +1,50 @@
+{
+  "entities": {
+    "user": {
+      "title": "User",
+      "description": "User profile information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "book": {
+      "title": "Book",
+      "description": "Metadata and progress for a user's book",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "creator": { "type": "string" },
+        "storageUrl": { "type": "string", "description": "URL to the EPUB file in Firebase Storage" },
+        "lastHref": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "storageUrl"]
+    },
+    "chapterCache": {
+      "title": "Chapter Cache",
+      "description": "Cached TTS audio for a specific chapter",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "bookId": { "type": "string" },
+        "chapterHref": { "type": "string" },
+        "audioUrl": { "type": "string", "description": "URL to the audio file in Firebase Storage" },
+        "text": { "type": "string" },
+        "updatedAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "bookId", "chapterHref", "audioUrl"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": { "schema": "user", "description": "Individual user profiles" },
+    "/users/{userId}/books/{bookId}": { "schema": "book", "description": "Books uploaded by the user" },
+    "/users/{userId}/books/{bookId}/chapters/{chapterId}": { "schema": "chapterCache", "description": "TTS audio cache for book chapters" }
+  }
+}
